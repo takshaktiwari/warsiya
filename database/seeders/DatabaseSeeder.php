@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(SubjectSeeder::class);
+        $this->call(BoardSeeder::class);
         $this->call(GradeSeeder::class);
 
         $this->call(GallerySeeder::class);

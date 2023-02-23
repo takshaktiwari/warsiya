@@ -17,12 +17,13 @@
     ]" />
 
     <div class="card">
-    {{--     <x-admin.paginator-info :items="$materials" class="card-header" /> --}}
+        <x-admin.paginator-info :items="$materials" class="card-header" />
         <div class="card-body table-responsive">
             <table class="table">
                 <thead>
                     <th>#</th>
-                    <th>Materials</th>
+                    <th>Title</th>
+                    <th>Grade</th>
                     <th>Subject</th>
                     <th>Action</th>
                 </thead>
@@ -30,7 +31,11 @@
                     @foreach ($materials as $material)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td class="text-nowrap">{{ $material->title }}</td>
+                            <td class="text-nowrap">
+                                {{ $material->title }}
+                                <span class="badge bg-primary">{{ $material->material_items_count }}</span>
+                            </td>
+                            <td class="text-nowrap">{{ $material->grade->name }}</td>
                             <td class="text-nowrap">{{ $material->subject->name }}</td>
                             <td class="text-nowrap">
                                 <a href="{{ route('admin.materials.edit', [$material]) }}"

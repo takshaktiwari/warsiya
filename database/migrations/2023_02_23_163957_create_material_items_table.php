@@ -12,12 +12,10 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('materials', function (Blueprint $table) {
+        Schema::create('material_items', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->foreignId('grade_id')->constrained()->onDelete('cascade');
-            $table->foreignId('subject_id')->constrained()->onDelete('cascade');
-            $table->text('description');
+            $table->foreignId('material_id')->constrained()->onDelete('cascade');
+            $table->string('file_path', 255);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('materials');
+        Schema::dropIfExists('material_items');
     }
 };

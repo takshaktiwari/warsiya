@@ -49,5 +49,9 @@ Route::middleware(['auth', GatesMiddleware::class, RefererMiddleware::class])->p
     Route::resource('grades', GradeController::class);
     Route::resource('boards', BoardController::class);
     Route::resource('materials', MaterialController::class);
-    Route::post('ajax-grades', [MaterialController::class, 'getGrade'])->name('ajax-grades');
+
+    Route::prefix('ajax')->name('ajax.')->group(function () {
+        Route::post('grades', [MaterialController::class, 'getGrades'])->name('grades');
+        Route::post('subjects', [MaterialController::class, 'getSubjects'])->name('subjects');
+    });
 });

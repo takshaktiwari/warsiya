@@ -30,7 +30,10 @@
                     @foreach ($grades as $grade)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td class="text-nowrap">{{ $grade->name }}</td>
+                            <td class="text-nowrap">
+                                {{ $grade->name }}
+                                <b class="d-block small">{{ $grade->board->name }}</b>
+                            </td>
                             <td class="small">{{ $grade->subjects->pluck('name')->implode(', ') }}</td>
                             <td class="text-nowrap">
                                 <a href="{{ route('admin.grades.edit', [$grade]) }}"
