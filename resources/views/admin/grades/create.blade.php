@@ -34,6 +34,16 @@
                             value="{{ old('name') }}" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="">Select Board*</label>
+                        <select name="board_id" class="form-control"  required>
+                            <option value="">-- Select --</option>
+                            @foreach ($boards as $board)
+                                <option value="{{ $board->id }}">{{ $board->short_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="form-group mb-0">
                         <label for="">Select Subjects*</label>
                         <select name="subjects[]" id="subjects" class="form-control select2" multiple required>

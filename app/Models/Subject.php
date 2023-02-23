@@ -16,8 +16,13 @@ class Subject extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function grades(): BelongsToMany
+    public function grades()
     {
         return $this->belongsToMany(Grade::class);
+    }
+
+    public function material()
+    {
+        return $this->hasMany(Material::class);
     }
 }

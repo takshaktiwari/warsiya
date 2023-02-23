@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\GradeController;
+use App\Http\Controllers\Admin\BoardController;
+use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SubjectController;
@@ -45,4 +47,7 @@ Route::middleware(['auth', GatesMiddleware::class, RefererMiddleware::class])->p
 
     Route::resource('subjects', SubjectController::class);
     Route::resource('grades', GradeController::class);
+    Route::resource('boards', BoardController::class);
+    Route::resource('materials', MaterialController::class);
+    Route::post('ajax-grades', [MaterialController::class, 'getGrade'])->name('ajax-grades');
 });

@@ -20,4 +20,10 @@ class Grade extends Model
     {
         return $this->belongsToMany(Subject::class);
     }
+
+    
+    public function board()
+    {
+        return $this->belongsTo(Board::class);
+    }
 }

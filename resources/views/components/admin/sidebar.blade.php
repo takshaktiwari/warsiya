@@ -44,6 +44,13 @@
                     @endcan
                 @endcanany --}}
 
+                 <li>
+                    <a href="{{ route('admin.boards.index') }}" class="waves-effect">
+                        <i class="fas fa-home"></i>
+                        <span>Boards</span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{ route('admin.subjects.index') }}" class="waves-effect">
                         <i class="fas fa-book"></i>
@@ -55,6 +62,13 @@
                     <a href="{{ route('admin.grades.index') }}" class="waves-effect">
                         <i class="fas fa-graduation-cap"></i>
                         <span>Grades</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.materials.index') }}" class="waves-effect">
+                        <i class="fas fa-home"></i>
+                        <span>Materials</span>
                     </a>
                 </li>
 
