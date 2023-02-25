@@ -95,11 +95,9 @@
                                         <li class="has-dropdown">
                                             <a href="course.html">Courses</a>
                                             <ul class="submenu">
-                                                <li><a href="course-list.html">Courses List</a></li>
-                                                <li><a href="course.html">Courses Grid</a></li>
-                                                <li><a href="course-details.html">Course Details</a></li>
-                                                <li><a href="cart.html">Cart</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
+                                                @foreach($grades as $grade)
+                                                    <li><a href="{{ route('grade',[$grade]) }}">{{ $grade->name }}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li>

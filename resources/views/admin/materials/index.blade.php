@@ -38,6 +38,10 @@
                             <td class="text-nowrap">{{ $material->grade->name }}</td>
                             <td class="text-nowrap">{{ $material->subject->name }}</td>
                             <td class="text-nowrap">
+                                <a href="{{ route('admin.materials.show', [$material]) }}"
+                                    class="btn btn-success btn-sm btn-loader load-circle">
+                                    <i class="fas fa-info"></i>
+                                </a>
                                 <a href="{{ route('admin.materials.edit', [$material]) }}"
                                     class="btn btn-success btn-sm btn-loader load-circle">
                                     <i class="fas fa-edit"></i>

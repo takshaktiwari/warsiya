@@ -88,13 +88,25 @@ class MaterialController extends Controller
         return to_route('admin.materials.index')->withSuccess('Material is successfully added');
     }
 
+    public function show(Material $material)
+    {
+        $grade = Grade::where('id',$material->grade_id)->get();
+        //$board = Board::where('id')->get();
+        return view('admin.materials.info')->with([
+            'material'     =>  $material,
+             'grade'    =>  $grade
+        ]);
+    }
+
     public function edit(Material $material)
     {
         $subjects = Subject::get()->all();
+        $boards = Board::get()->all();
 
         return view('admin.materials.edit')->with([
             'material'     =>  $material,
-            'subjects'     =>  $subjects
+            'subjects'     =>  $subjects,
+             'boards'    =>  $boards
         ]);
     }
 

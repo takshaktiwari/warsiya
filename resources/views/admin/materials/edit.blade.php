@@ -19,7 +19,8 @@
     ]" />
 
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-8">
+            
             <form method="POST" action="{{ route('admin.materials.update', [$material]) }}" class="card" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -28,28 +29,44 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="">Material Title*</label>
+                        <label for="">Title*</label>
                         <input type="text" name="title" class="form-control" placeholder="Material Title"
                             value="{{ old('title', $material->title) }}" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="">Select Subjects*</label>
-                        <select name="subjects"  class="form-control" required>
+                        <label for="">Board*</label>
+                        <select name="" id="board" class="form-control">
                             <option value="">-- Select --</option>
-                            @foreach ($subjects as $subject)
-                                <option value="{{ $subject->id }}" {{ $material->subject_id == $subject->id ? 'selected' : ''; }}>{{ $subject->name }}</option>
+                            @foreach ($boards as $board)
+                                <option value="{{ $board->id }}">{{ $board->short_name }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="">Upload PDF</label>
-                        <input type='file' name="file_path"   class="form-control" required>
+                        <label for="">Grade*</label>
+                        <select name="grade_id" id="grade" class="form-control">
+                            <option value="">-- Select --</option>
+                        </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="">Select Subjects*</label>
+                        <select name="subject_id" id="subject" class="form-control" required>
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Upload PDF</label>
+                        <input type='file' name="file_path[]" multiple class="form-control" required>
+                    </div>
+                    <div class="">
+                    
                     <div class="form-group">
                         <label for="">Description*</label>
-                        <textarea name="description" cols="40" rows="4" class="form-control" placeholder="Description of Study Material " required> {{ $material->description }}</textarea>
+                        <textarea name="description" cols="40" rows="4" class="form-control"
+                            placeholder="Description of Study Material" required>{{ $material->description }} </textarea>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -60,4 +77,44 @@
             </form>
         </div>
     </div>
+    <x-slot name="script">
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#board").change(function() {
+                    $.ajax({
+                        url: '{{ route('admin.ajax.grades') }}',
+                        type: 'POST',
+                        data: {
+                            board_id: $(this).val(),
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(result) {
+                            $("#grade").html('<option value="">-- Select --</option>');
+                            $("#subject").html('<option value="">-- Select --</option>');
+                            $.each(result, function (index, item) {
+                                $("#grade").append(`<option value="${item.id}">${item.name}</option>`);
+                            });
+                        }
+                    });
+                });
+
+                $("#grade").change(function() {
+                    $.ajax({
+                        url: '{{ route('admin.ajax.subjects') }}',
+                        type: 'POST',
+                        data: {
+                            grade_id: $(this).val(),
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(result) {
+                            $("#subject").html('<option value="">-- Select --</option>');
+                            $.each(result, function (index, item) {
+                                $("#subject").append(`<option value="${item.id}">${item.name}</option>`);
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    </x-slot>
 </x-admin.layout>

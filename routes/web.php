@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home')->name('root');
 Route::view('about', 'about')->name('about');
 Route::view('contact', 'contact')->name('contact');
+Route::get('grade/{grade:id}', [HomeController::class, 'grade'])->name('grade');
+Route::get('subject/{subject:id}', [HomeController::class, 'subject'])->name('subject');
+Route::get('material/{material:id}', [HomeController::class, 'material'])->name('material');
+
 
 
 
