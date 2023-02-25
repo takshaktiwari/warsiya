@@ -85,6 +85,14 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('admin.queries.index') }}" class="waves-effect">
+                        <i class="fas fa-question"></i>
+                        <span>Queries </span>
+                    </a>
+                </li>
+
+
                 <li class="menu-title">Manage Account</li>
                 <li>
                     <a href="{{ route('admin.profile.edit') }}" class=" waves-effect">

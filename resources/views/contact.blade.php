@@ -20,10 +20,8 @@
                             </p>
                         </div>
                         <div class="contact__form mb-30">
-                            <form
-                                action="https://data.themeim.com/html/tutorgo/assets/mail.php"
-                                id="contact-form"
-                            >
+                            <form method="POST" action="{{ route('query_store') }}" >
+                            @csrf    
                                 <div class="row">
                                     <div class="col-xxl-6 col-xl-6 col-md-6">
                                         <div class="contact__form-input">

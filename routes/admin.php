@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\QueryController;
 use Takshak\Adash\Http\Middleware\RefererMiddleware;
 use Takshak\Adash\Http\Middleware\GatesMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -54,4 +55,6 @@ Route::middleware(['auth', GatesMiddleware::class, RefererMiddleware::class])->p
         Route::post('grades', [MaterialController::class, 'getGrades'])->name('grades');
         Route::post('subjects', [MaterialController::class, 'getSubjects'])->name('subjects');
     });
+
+    Route::resource('queries', QueryController::class);
 });
