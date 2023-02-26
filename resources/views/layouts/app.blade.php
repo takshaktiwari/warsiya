@@ -93,10 +93,10 @@
                                             <a href="{{ route('galleries.groups') }}">Gallery</a>
                                         </li>
                                         <li class="has-dropdown">
-                                            <a href="course.html">Courses</a>
+                                            <a href="#">Courses</a>
                                             <ul class="submenu">
-                                                @foreach($grades as $grade)
-                                                    <li><a href="{{ route('grade',[$grade]) }}">{{ $grade->name }}</a></li>
+                                                @foreach($boards as $board)
+                                                    <li><a href="{{ route('board',[$board]) }}">{{ $board->short_name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -110,11 +110,10 @@
                         <div class="col-xxl-4 col-xl-4 col-lg-3 col-md-6 col-6">
                             <div class="tp-header__main-right d-flex justify-content-end align-items-center pl-30">
                                 <div class="header-acttion-btns d-flex align-items-center d-none d-md-flex">
-                                    <a href="tel:+(443)003030266" class="tp-phone-btn d-none d-xl-block"><i
-                                            class="fa-thin fa-phone"></i>+(443)00
-                                        303 0266 <span></span></a>
+                                    <a href="tel:+91 9999999999" class="tp-phone-btn d-none d-xl-block"><i
+                                            class="fa-thin fa-phone"></i>+91 9999999999 <span></span></a>
                                     <a href="{{ route('contact') }}" class="tp-btn br-0">
-                                        <span>Book a Visit <i class="fa-regular fa-arrow-right"></i> </span>
+                                        <span>Query Now <i class="fa-regular fa-arrow-right"></i> </span>
                                         <div class="transition"></div>
                                     </a>
                                 </div>
@@ -221,11 +220,11 @@
                                 <h3 class="footer__widget-title">Information</h3>
                                 <div class="footer__widget-content">
                                     <ul>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                        <li><a href="#">Customer</a></li>
+                                        <li><a href="{{ route('about') }}">About Us</a></li>
+                                        <li><a href="{{ route('galleries.groups') }}">Gallery</a></li>
+                                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                         <li><a href="#">Privacy</a></li>
-                                        <li><a href="#">Service</a></li>
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -235,11 +234,10 @@
                                 <h3 class="footer__widget-title">Courses</h3>
                                 <div class="footer__widget-content">
                                     <ul>
-                                        <li><a href="#">Masters Degree</a></li>
-                                        <li><a href="#">Post GraduateU</a></li>
-                                        <li><a href="#">Ndergraduate</a></li>
-                                        <li><a href="#">Engineering</a></li>
-                                        <li><a href="#">Ph.D Degree</a></li>
+                                        @foreach($board_footers as $board_footer)
+                                        <li><a href="{{ route('board', [$board_footer]) }}">{{ $board_footer->short_name }}</a></li>
+                                        @endforeach
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -247,19 +245,37 @@
 
                         <div class="col-xxl-4 col-xl-4 col-lg-3 col-md-6">
                             <div class="footer__widget mb-50 footer-col-4">
-                                <h3 class="footer__widget-title">Sign Up for Our Newsletter</h3>
+                                <h3 class="footer__widget-title">Address Info</h3>
                                 <div class="footer__widget-content">
                                     <div class="footer__subscribe">
-                                        <p>Receive weekly newsletter with educational,
-                                            popular books and much more!</p>
-                                        <form action="#">
-                                            <div class="footer__subscribe-box">
-                                                <div class="footer__subscribe-input">
-                                                    <input type="email" placeholder="Email address">
-                                                </div>
-                                                <button class="footer-sub-btn" type="submit">Subscribe</button>
-                                            </div>
-                                        </form>
+                                        
+                                            <p class="mb-0">
+                                            <span>
+                                                <i class="fa-solid fa-location-dot"></i>
+                                            </span>
+                                            <span>
+                                                Aut cum mollitia reprehenderit.
+                                        Eos cumque dicta adipisci amet
+                                        architecto culpa.
+
+                                            </span>
+                                        </p>
+                                        <p class="mb-0">
+                                            <span>
+                                                <i class="fa-solid fa-envelope"></i>
+                                            </span>
+                                            <span>
+                                                info@xyz.com
+                                            </span>
+                                        </p>
+                                        <p class="mb-0">
+                                            <span>
+                                                <i class="fa-solid fa-phone"></i>
+                                            </span>  
+                                            <span><a href="+9199999999999">+91 99999999999</a>, <a href="+9199999999999">+91 99999999999</a></span> 
+                                        </p>
+                                            
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -270,9 +286,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="footer__copyright text-center">
-                                <p> © {{ now()->format('Y') }} Tutorgo, All Rights Reserved. Design By <a
-                                        href="#" target="_blank">Theme
-                                        Pure</a></p>
+                                <p> © {{ now()->format('Y') }} Tutorgo, All Rights Reserved.</p>
                             </div>
                         </div>
                     </div>

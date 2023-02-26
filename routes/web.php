@@ -23,6 +23,7 @@ Route::post('query-store', [QueryController::class, 'querystore'])->name('query_
 Route::get('grade/{grade:id}', [HomeController::class, 'grade'])->name('grade');
 Route::get('subject/{subject:id}', [HomeController::class, 'subject'])->name('subject');
 Route::get('material/{material:id}', [HomeController::class, 'material'])->name('material');
+Route::get('board/{board:id}', [HomeController::class, 'board'])->name('board');
 
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Subject;
+use App\Models\Board;
 use App\Models\Material;
 
 class HomeController extends Controller
@@ -20,7 +21,7 @@ class HomeController extends Controller
 
     public function grade(Grade $grade)
     {
-        $subjects = $subjects = Subject::with('grades:id,name')->get();
+        $subjects = $subjects = Subject::with('grades:id,name')->limit(20)->get();
         return view('grade')->with([
             'grade' => $grade,
             'subjects' => $subjects,
@@ -29,8 +30,12 @@ class HomeController extends Controller
 
     public function subject(Subject $subject)
     {
+        $materials = Material::select('id','title')->limit(20)->get();
+        return view('subject')->with([
+                'subject' => $subject,
+                'materials' => $materials
 
-        return view('subject')->with(['subject' => $subject]);
+        ]);
     }
 
     public function material(Material $material)
@@ -38,6 +43,16 @@ class HomeController extends Controller
         $grades =Grade::get();
         return view('material')->with([
             'material' => $material,
+            'grades'   => $grades
+
+        ]);
+    }
+
+    public function board(Board $board)
+    {
+        $grades =Grade::get();
+        return view('board')->with([
+            'board' => $board,
             'grades'   => $grades
 
         ]);

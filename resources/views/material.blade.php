@@ -9,7 +9,7 @@
             <div class="row">
 
             	
-                <div class="col-xxl-7 col-xl-7 col-lg-6">
+                <div class="col-lg-8 col-sm-6">
                 	<h2 class="text-center mb-4" >{{ $material->title }}</h2>
                     <h4 class="my-3"> Grade:{{ $material->grade->name }}</h4>
                     <h5>Subject: {{ $material->subject->name }}</h5>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div
-                    class="col-xxl-4 offset-xxl-1 col-xl-4 offset-xl-1 col-lg-5 offset-lg-1"
+                    class="col-lg-4 col-sm-6"
                 >
                     <div class="contact__info white-bg p-relative z-index-1">
                         <div class="contact__info-inner white-bg">
