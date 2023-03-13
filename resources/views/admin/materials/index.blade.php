@@ -23,24 +23,26 @@
                 <thead>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Grade</th>
                     <th>Subject</th>
+                    <th>Grade</th>
+                    <th>Board</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
                     @foreach ($materials as $material)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td class="text-nowrap">
+                            <td>
                                 {{ $material->title }}
                                 <span class="badge bg-primary">{{ $material->material_items_count }}</span>
                             </td>
-                            <td class="text-nowrap">{{ $material->grade->name }}</td>
                             <td class="text-nowrap">{{ $material->subject->name }}</td>
+                            <td class="text-nowrap">{{ $material->grade->name }}</td>
+                            <td class="text-nowrap">{{ $material->grade->board->short_name }}</td>
                             <td class="text-nowrap">
                                 <a href="{{ route('admin.materials.show', [$material]) }}"
-                                    class="btn btn-success btn-sm btn-loader load-circle">
-                                    <i class="fas fa-info"></i>
+                                    class="btn btn-info btn-sm btn-loader load-circle">
+                                    <i class="fas fa-info-circle"></i>
                                 </a>
                                 <a href="{{ route('admin.materials.edit', [$material]) }}"
                                     class="btn btn-success btn-sm btn-loader load-circle">

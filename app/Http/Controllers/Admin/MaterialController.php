@@ -17,10 +17,14 @@ class MaterialController extends Controller
     public function index()
     {
         $materials = Material::query()
+            ->select('id', 'title', 'grade_id', 'subject_id')
             ->with('subject:id,name')
-            ->with('grade:id,name')
+            ->with(['grade' => function ($query) {
+                $query->select('id', 'board_id', 'name');
+                $query->with('board:id,short_name,name');
+            }])
             ->withCount('materialItems')
-            ->paginate(25);
+            ->paginate(50);
 
         return view('admin.materials.index')->with(['materials' => $materials]);
     }
@@ -90,11 +94,11 @@ class MaterialController extends Controller
 
     public function show(Material $material)
     {
-        $grade = Grade::where('id',$material->grade_id)->get();
+        $grade = Grade::where('id', $material->grade_id)->get();
         //$board = Board::where('id')->get();
         return view('admin.materials.info')->with([
             'material'     =>  $material,
-             'grade'    =>  $grade
+            'grade'    =>  $grade
         ]);
     }
 
@@ -106,7 +110,7 @@ class MaterialController extends Controller
         return view('admin.materials.edit')->with([
             'material'     =>  $material,
             'subjects'     =>  $subjects,
-             'boards'    =>  $boards
+            'boards'    =>  $boards
         ]);
     }
 
