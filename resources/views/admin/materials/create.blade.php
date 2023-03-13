@@ -33,33 +33,40 @@
                         <input type="text" name="title" class="form-control" placeholder="Material Title"
                             value="{{ old('title') }}" required>
                     </div>
-                    <div class="form-group">
-                        <label for="">Board*</label>
-                        <select name="" id="board" class="form-control">
-                            <option value="">-- Select --</option>
-                            @foreach ($boards as $board)
-                                <option value="{{ $board->id }}">{{ $board->short_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Grade*</label>
-                        <select name="grade_id" id="grade" class="form-control">
-                            <option value="">-- Select --</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Select Subjects*</label>
-                        <select name="subject_id" id="subject" class="form-control" required>
-                            <option value="">-- Select --</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Upload PDF</label>
-                        <input type='file' name="file_path[]" multiple class="form-control" required>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Board*</label>
+                                <select name="" id="board" class="form-control">
+                                    <option value="">-- Select --</option>
+                                    @foreach ($boards as $board)
+                                        <option value="{{ $board->id }}">{{ $board->short_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Grade*</label>
+                                <select name="grade_id" id="grade" class="form-control">
+                                    <option value="">-- Select --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Select Subjects*</label>
+                                <select name="subject_id" id="subject" class="form-control" required>
+                                    <option value="">-- Select --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="">Upload PDF</label>
+                                <input type='file' name="file_path[]" multiple class="form-control" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="">Description*</label>
@@ -89,8 +96,9 @@
                         success: function(result) {
                             $("#grade").html('<option value="">-- Select --</option>');
                             $("#subject").html('<option value="">-- Select --</option>');
-                            $.each(result, function (index, item) {
-                                $("#grade").append(`<option value="${item.id}">${item.name}</option>`);
+                            $.each(result, function(index, item) {
+                                $("#grade").append(
+                                    `<option value="${item.id}">${item.name}</option>`);
                             });
                         }
                     });
@@ -106,8 +114,9 @@
                         },
                         success: function(result) {
                             $("#subject").html('<option value="">-- Select --</option>');
-                            $.each(result, function (index, item) {
-                                $("#subject").append(`<option value="${item.id}">${item.name}</option>`);
+                            $.each(result, function(index, item) {
+                                $("#subject").append(
+                                    `<option value="${item.id}">${item.name}</option>`);
                             });
                         }
                     });

@@ -19,28 +19,13 @@ class HomeController extends Controller
         }
     }
 
-    public function grade(Grade $grade)
-    {
-        $subjects = $subjects = Subject::with('grades:id,name')->limit(20)->get();
-        return view('grade')->with([
-            'grade' => $grade,
-            'subjects' => $subjects,
-        ]);
-    }
 
-    public function subject(Subject $subject)
-    {
-        $materials = Material::select('id','title')->limit(20)->get();
-        return view('subject')->with([
-                'subject' => $subject,
-                'materials' => $materials
 
-        ]);
-    }
+
 
     public function material(Material $material)
     {
-        $grades =Grade::get();
+        $grades = Grade::get();
         return view('material')->with([
             'material' => $material,
             'grades'   => $grades
@@ -50,11 +35,33 @@ class HomeController extends Controller
 
     public function board(Board $board)
     {
-        $grades =Grade::get();
+        $board->load('grades');
+        $boards = Board::get();
         return view('board')->with([
             'board' => $board,
-            'grades'   => $grades
+            'boards' => $boards,
+        ]);
+    }
 
+    public function grade(Grade $grade)
+    {
+        $grades = Grade::where('board_id', $grade->board_id)->get();
+        return view('grade')->with([
+            'grade' => $grade,
+            'grades' => $grades,
+        ]);
+    }
+
+    public function subject(Grade $grade, Subject $subject)
+    {
+        $materials = Material::query()
+            ->where('grade_id', $grade->id)
+            ->where('subject_id', $subject->id)
+            ->get();
+
+        return view('subject')->with([
+            'grade' => $grade,
+            'materials' => $materials
         ]);
     }
 }
