@@ -24,8 +24,6 @@ Route::get('board/{board}', [HomeController::class, 'board'])->name('board');
 Route::get('grade/{grade}', [HomeController::class, 'grade'])->name('grade');
 Route::get('subject/{grade}/{subject}', [HomeController::class, 'subject'])->name('subject');
 
-Route::get('material/{grade}/{subject}', [HomeController::class, 'material'])->name('material');
-
 
 
 

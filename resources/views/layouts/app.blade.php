@@ -95,8 +95,10 @@
                                         <li class="has-dropdown">
                                             <a href="#">Courses</a>
                                             <ul class="submenu">
-                                                @foreach($boards as $board)
-                                                    <li><a href="{{ route('board',[$board]) }}">{{ $board->short_name }}</a></li>
+                                                @foreach ($boards as $board)
+                                                    <li><a
+                                                            href="{{ route('board', [$board]) }}">{{ $board->short_name }}</a>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -203,8 +205,7 @@
                                 </div>
                                 <div class="footer__widget-content">
                                     <p>Aut cum mollitia reprehenderit.
-                                        Eos cumque dicta adipisci amet
-                                        architecto culpa.</p>
+                                        Eos cumque dicta adipisci amet</p>
                                     <div class="footer__social">
                                         <span><a href="#"><i class="fab fa-facebook-f"></i></a></span>
                                         <span><a href="#" class="yt"><i
@@ -220,11 +221,12 @@
                                 <h3 class="footer__widget-title">Information</h3>
                                 <div class="footer__widget-content">
                                     <ul>
+                                        <li><a href="{{ route('root') }}">Home</a></li>
                                         <li><a href="{{ route('about') }}">About Us</a></li>
                                         <li><a href="{{ route('galleries.groups') }}">Gallery</a></li>
                                         <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                         <li><a href="#">Privacy</a></li>
-                                        
+
                                     </ul>
                                 </div>
                             </div>
@@ -234,10 +236,13 @@
                                 <h3 class="footer__widget-title">Courses</h3>
                                 <div class="footer__widget-content">
                                     <ul>
-                                        @foreach($board_footers as $board_footer)
-                                        <li><a href="{{ route('board', [$board_footer]) }}">{{ $board_footer->short_name }}</a></li>
+                                        @foreach ($boards as $board)
+                                            <li>
+                                                <a href="{{ route('board', [$board]) }}">
+                                                    {{ $board->short_name }}
+                                                </a>
+                                            </li>
                                         @endforeach
-                                       
                                     </ul>
                                 </div>
                             </div>
@@ -248,19 +253,17 @@
                                 <h3 class="footer__widget-title">Address Info</h3>
                                 <div class="footer__widget-content">
                                     <div class="footer__subscribe">
-                                        
-                                            <p class="mb-0">
+                                        <p>
                                             <span>
                                                 <i class="fa-solid fa-location-dot"></i>
                                             </span>
                                             <span>
                                                 Aut cum mollitia reprehenderit.
-                                        Eos cumque dicta adipisci amet
-                                        architecto culpa.
-
+                                                Eos cumque dicta adipisci amet
+                                                architecto culpa.
                                             </span>
                                         </p>
-                                        <p class="mb-0">
+                                        <p>
                                             <span>
                                                 <i class="fa-solid fa-envelope"></i>
                                             </span>
@@ -268,14 +271,15 @@
                                                 info@xyz.com
                                             </span>
                                         </p>
-                                        <p class="mb-0">
+                                        <p>
                                             <span>
                                                 <i class="fa-solid fa-phone"></i>
-                                            </span>  
-                                            <span><a href="+9199999999999">+91 99999999999</a>, <a href="+9199999999999">+91 99999999999</a></span> 
+                                            </span>
+                                            <span><a href="+9199999999999">+91 99999999999</a>, <a
+                                                    href="+9199999999999">+91 99999999999</a></span>
                                         </p>
-                                            
-                                        
+
+
                                     </div>
                                 </div>
                             </div>

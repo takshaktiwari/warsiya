@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-breadcrumb title="Contact Us" :links="[['text' => 'Home', 'url' => url('/')], ['text' => 'Grade']]" />
+    <x-breadcrumb title="Grades" :links="[['text' => $grade->board->short_name, 'url' => route('board', [$grade->board])], ['text' => 'Grade']]" />
 
     <section class="contact__area pt-115 pb-120">
         <div class="container">
@@ -12,12 +12,12 @@
                     <h4>{{ $grade->board->name }}({{ $grade->board->short_name }})</h4>
 
                     <div class="row my-5">
-                        @foreach ($grade->subjects->pluck('name', 'id') as $id => $subject)
+                        @foreach ($grade->subjects as $subject)
                             <div class="col-xxl-4 col-xl-4 col-lg-4">
                                 <div class="card my-2">
                                     <div class="card-body">
                                         <h5 class="section__title">
-                                            <a href="{{ route('subject', [$id]) }}"> {{ $subject }} </a>
+                                            <a href="{{ route('subject', [$grade, $subject]) }}"> {{ $subject->name }} </a>
                                         </h5>
                                     </div>
                                 </div>

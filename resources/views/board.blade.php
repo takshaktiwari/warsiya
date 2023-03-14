@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-breadcrumb title="Boards" :links="[['text' => 'Home', 'url' => url('/')], ['text' => 'Board']]" />
+    <x-breadcrumb title="Boards" :links="[['text' => 'Board']]" />
 
     <section class="contact__area pt-115 pb-120">
         <div class="container">

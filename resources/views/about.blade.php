@@ -2,7 +2,7 @@
     <x-breadcrumb title="About Us" :links="[['text' => 'Home', 'url' => url('/')], ['text' => 'About Us']]" />
 
     <!-- about section  start -->
-    <div class="tp-about__section pt-120 pb-90">
+    <div class="tp-about__section py-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7">
@@ -26,11 +26,11 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="tp-section__title-wrapper">
-                        <h3 class="tp-section__title mb-15">Benefit From Our <br>
-                            Online Learning Experties
-                            Earn professional.</h3>
-                        <p class="mb-40">Lorem ipsum dolor sit amet, consectetur aliqua adipiscing
-                            elit, sed do eiumod tempor.</p>
+                        <h3 class="tp-section__title mb-15">
+                            Benefit From Our <br>
+                            Online Learning Experties Earn professional.
+                        </h3>
+                        <p class="mb-40">Warsiya Education Hub is a hub of the Education which provides the education nusery class to class 12</p>
 
                         <div class="tp-about__feature-list mb-40">
                             <ul>
@@ -47,12 +47,31 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
     <!-- about section end  -->
+
+    <div class="tp-about__section py-5" style="background: #f0f0f0">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="https://picsum.photos/400/500" alt="image" class="rounded w-100">
+                </div>
+                <div class="col-md-8">
+                    <p class="lead">
+                        Warsiya Education Hub is a hub of the Education which provides the education nusery class to class 12. It provides quality important questions for board exam and study materials for the students preparing for BSEB/CBSE or any other board. It also provies the books pdf for class 1 to class 12. We can get the NCERT/ Other books solution in this side. NCERT Books based test and study materials are according to the student’s needs. We also provide previous year papers of all major boards. Director of Warsiya Education Hub Saddam Waris and Shamshad Waris.
+                    </p>
+                    <blockquote class="shadow-sm border-start border-success border-4 px-4 py-3 mb-2">
+                        <b>Saddam Waris:</b> I completed B. Tech (Mechanical Engineering) From UPTU in 2013. My hobby is teaching Maths. I started to teach Math from 2017. My teaching way is batter to understand the students in easy way.
+                    </blockquote>
+                    <blockquote class="shadow-sm border-start border-success border-4 px-4 py-3 mb-0">
+                        <b>Shamshad Waris:</b> I completed B. Tech (Computer Science) From Silicon Institute of Technology in 2017. My hobby is teaching Maths. I started to teach Math from 2017. My teaching way is batter to understand the students in easy way.
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- counter start  -->
     <div class="tp-counter__section pt-80 pb-60" data-background="{{ asset('assets/img/bg/counter-bg-1.jpg') }}">
@@ -96,7 +115,7 @@
     <!-- counter end  -->
 
     <!-- testimonial start  -->
-    <div class="tp-testimonial-2__section pt-120 pb-90">
+    <div class="tp-testimonial-2__section py-5">
         <div class="container">
             <div class="row">
                 <div class="tp-testimonial-2__wrapper p-relative">
@@ -208,7 +227,8 @@
 
 
     <!-- cta start-->
-    <div class="tp-cta-2__section p-relative pt-50 pb-20 p-relative" data-background="assets/img/bg/cta-shape-2.jpg') }}">
+    {{-- <div class="tp-cta-2__section p-relative pt-50 pb-20 p-relative"
+        data-background="assets/img/bg/cta-shape-2.jpg') }}">
         <div class="tp-cta-2__shape">
             <img src="{{ asset('assets/img/icons/ring-2.png') }}" alt="">
         </div>
@@ -216,7 +236,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="tp-cta__info mb-30">
-                        <h3 class="tp-section__title text-white mb-25">Quickly get updates about <br>
+                        <h3 class="tp-section__title mb-25">Quickly get updates about <br>
                             class event and news!</h3>
                         <div class="tp-cta-2__form p-relative">
                             <form>
@@ -235,6 +255,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- newsletter end -->
 </x-app-layout>

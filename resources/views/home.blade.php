@@ -206,7 +206,7 @@
     <!-- service area end  -->
 
     <!-- about section  start -->
-    <div class="tp-about__section pt-120 pb-90">
+    <div class="tp-about__section pt-60 pb-60">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7">
@@ -260,7 +260,7 @@
     <!-- about section end  -->
 
     <!-- course start  -->
-    <div class="tp-courses__section grey-bg-2 pt-120 pb-90">
+    {{-- <div class="tp-courses__section grey-bg-2 pt-120 pb-90">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -1117,11 +1117,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- course end  -->
 
     <!-- event start-->
-    <div class="tp-event__section pt-120 pb-90 p-relative">
+    {{-- <div class="tp-event__section pt-120 pb-90 p-relative">
         <div class="tp-event__shape">
             <div class="event-1">
                 <img src="{{ asset('assets/img/icons/event-line-1.png') }}" alt="">
@@ -1230,13 +1230,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- evant end -->
 
     <!-- testimonial start  -->
-    <div class="tp-testimonial__section pb-120">
+    <div class="tp-testimonial__section pb-90">
         <div class="container">
-            <div class="grey-bg pb-150 pt-60 tp-testimonial__bg">
+            <div class="grey-bg pb-90 pt-60 tp-testimonial__bg">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="tp-section__title-wrapper mb-40 text-center">
@@ -1324,7 +1324,7 @@
     <!-- tesimoial end  -->
 
     <!-- team start  -->
-    <div class="tp-team__section pb-130">
+    <div class="tp-team__section pb-90">
         <div class="container">
             <div class="row">
                 <div class="tp-section__title-wrapper mb-40 text-center">
@@ -1434,7 +1434,7 @@
                         data-background="assets/img/bg/newsletter-bg-1.jpg') }}">
                         <div class="row align-items-center">
                             <div class="col-lg-9 col-md-8">
-                                <h3 class="tp-cta__title text-white">Want to study at Online <br> program ?</h3>
+                                <h3 class="tp-cta__title">Want to study at Online <br> program ?</h3>
                             </div>
                             <div class="col-lg-3 col-md-4">
                                 <div class="tp-cta__btn-wrappper d-flex justify-content-md-end">

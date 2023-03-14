@@ -55,11 +55,13 @@ class HomeController extends Controller
     public function subject(Grade $grade, Subject $subject)
     {
         $materials = Material::query()
+            ->with('materialItems')
             ->where('grade_id', $grade->id)
             ->where('subject_id', $subject->id)
             ->get();
 
         return view('subject')->with([
+            'subject' => $subject,
             'grade' => $grade,
             'materials' => $materials
         ]);
