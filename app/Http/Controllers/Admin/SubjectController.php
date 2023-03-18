@@ -27,7 +27,7 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  =>  'required|unique:subjects,name',
+            'name'  =>  'required',
             'subject_id'    =>  'nullable|numeric'
         ]);
 
@@ -48,7 +48,7 @@ class SubjectController extends Controller
     public function update(Request $request, Subject $subject)
     {
         $request->validate([
-            'name'  =>  'required|unique:subjects,name,' . $subject->id,
+            'name'  =>  'required',
             'subject_id'    =>  'nullable|numeric'
         ]);
 
