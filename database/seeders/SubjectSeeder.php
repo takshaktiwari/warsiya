@@ -17,9 +17,21 @@ class SubjectSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 50; $i++) {
+        for ($i = 0; $i < 15; $i++) {
+            $subject = Subject::create([
+                'name'      =>  $faker->company . '-' . rand(0, 9)
+            ]);
+            for ($j = 0; $j < rand(0, 5); $j++) {
+                Subject::create([
+                    'name'      =>  $faker->company . $subject->id,
+                    'subject_id'    =>  $subject->id
+                ]);
+            }
+        }
+
+        for ($i = 0; $i < 15; $i++) {
             Subject::create([
-                'name'      =>  $faker->company
+                'name'      =>  $faker->company . '-' . rand(0, 9)
             ]);
         }
     }

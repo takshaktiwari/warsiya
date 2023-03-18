@@ -17,7 +17,7 @@ return new class () extends Migration {
             $table->string('title');
             $table->foreignId('grade_id')->constrained()->onDelete('cascade');
             $table->foreignId('subject_id')->constrained()->onDelete('cascade');
-            $table->text('description');
+            $table->text('description')->nullable()->default(null);
             $table->timestamps();
         });
     }

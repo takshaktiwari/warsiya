@@ -10,7 +10,7 @@ class SubjectController extends Controller
 {
     public function index()
     {
-        $subjects = Subject::with('grades:id,name')->paginate(25);
+        $subjects = Subject::with('grades:id,name')->with('parent')->latest()->paginate(50);
         return view('admin.subjects.index')->with([
             'subjects'  =>  $subjects
         ]);
@@ -18,16 +18,23 @@ class SubjectController extends Controller
 
     public function create()
     {
-        return view('admin.subjects.create');
+        $subjects = Subject::select('id', 'name')->orderBy('name')->get();
+        return view('admin.subjects.create')->with([
+            'subjects'  => $subjects
+        ]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name'  =>  'required|unique:subjects,name'
+            'name'  =>  'required|unique:subjects,name',
+            'subject_id'    =>  'nullable|numeric'
         ]);
 
-        Subject::create(['name' => $request->name]);
+        Subject::create([
+            'name' => $request->name,
+            'subject_id'    =>  $request->post('subject_id')
+        ]);
         return redirect()->route('admin.subjects.index')->withSuccess('New subject has been created.');
     }
 
@@ -41,10 +48,14 @@ class SubjectController extends Controller
     public function update(Request $request, Subject $subject)
     {
         $request->validate([
-            'name'  =>  'required|unique:subjects,name,' . $subject->id
+            'name'  =>  'required|unique:subjects,name,' . $subject->id,
+            'subject_id'    =>  'nullable|numeric'
         ]);
 
-        $subject->update(['name' => $request->name]);
+        $subject->update([
+            'name' => $request->name,
+            'subject_id'    =>  $request->post('subject_id')
+        ]);
         return back()->withSuccess('Subject has been updated.');
     }
 

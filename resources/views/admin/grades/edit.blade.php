@@ -49,7 +49,12 @@
                         <select name="subjects[]" id="subjects" class="form-control select2" multiple required>
                             <option value="">-- Select --</option>
                             @foreach ($subjects as $subject)
-                                <option value="{{ $subject->id }}" {{ $subject->id == $grade->subjects()->pluck('subject_id')->contains($subject->id) ? 'selected' : ''; }} >{{ $subject->name }}</option>
+                                <option value="{{ $subject->id }}" {{ $subject->id == $grade->subjects->pluck('id')->contains($subject->id) ? 'selected' : ''; }} >
+                                    {{ $subject->name }}
+                                    @if ($subject->parent)
+                                        -> {{ $subject->parent?->name }}
+                                    @endif
+                                </option>
                             @endforeach
                         </select>
                     </div>

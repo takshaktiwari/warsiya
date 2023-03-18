@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Description*</label>
+                        <label for="">Description</label>
                         <textarea name="description" cols="40" rows="4" class="form-control"
                             placeholder="Description of Study Material" required> </textarea>
                     </div>
@@ -116,7 +116,8 @@
                             $("#subject").html('<option value="">-- Select --</option>');
                             $.each(result, function(index, item) {
                                 $("#subject").append(
-                                    `<option value="${item.id}">${item.name}</option>`);
+                                    `<option value="${item.id}">${item.name} ${item.parent ? ' -> '+item.parent.name : ''}</option>`
+                                );
                             });
                         }
                     });

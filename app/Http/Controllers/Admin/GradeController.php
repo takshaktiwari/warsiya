@@ -22,7 +22,11 @@ class GradeController extends Controller
 
     public function create()
     {
-        $subjects = Subject::select('id', 'name')->get();
+        $subjects = Subject::select('id', 'name', 'subject_id')
+            ->with('parent:id,name')
+            ->whereNotNull('subject_id')
+            ->orDoesntHave('children')
+            ->get();
         $boards = Board::select('id', 'short_name')->get();
 
         return view('admin.grades.create')->with([
@@ -34,13 +38,11 @@ class GradeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
-            'name'  =>  'required|unique:grades,name',
+            'name'  =>  'required',
             'board_id'  =>  'required'
-
         ]);
 
-        $grade =Grade::create([
+        $grade = Grade::create([
             'name'  =>  $request->post('name'),
             'board_id'  =>  $request->post('board_id')
         ]);
@@ -54,7 +56,13 @@ class GradeController extends Controller
 
     public function edit(Grade $grade)
     {
-        $subjects = Subject::select('id', 'name')->get();
+        $grade->load('subjects');
+
+        $subjects = Subject::select('id', 'name', 'subject_id')
+            ->with('parent:id,name')
+            ->whereNotNull('subject_id')
+            ->orDoesntHave('children')
+            ->get();
         $boards = Board::select('id', 'short_name')->get();
 
         return view('admin.grades.edit')->with([
@@ -68,7 +76,7 @@ class GradeController extends Controller
     public function update(Request $request, Grade $grade)
     {
         $request->validate([
-            'name'  =>  'required|unique:grades,name,'.$grade->id,
+            'name'  =>  'required|unique:grades,name,' . $grade->id,
             'board_id'  =>  'required'
         ]);
 

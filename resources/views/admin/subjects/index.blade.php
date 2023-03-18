@@ -30,9 +30,12 @@
                     @foreach ($subjects as $subject)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $subject->name }}</td>
-                            <td>{{ $subject->grades->pluck('name')->implode(', ') }}</td>
                             <td>
+                                {{ $subject->name }}
+                                <span class="d-block fw-bold small">{{ $subject->parent?->name }}</span>
+                            </td>
+                            <td>{{ $subject->grades->pluck('name')->implode(', ') }}</td>
+                            <td class="text-nowrap">
                                 <a href="{{ route('admin.subjects.edit', [$subject]) }}"
                                     class="btn btn-success btn-sm btn-loader load-circle">
                                     <i class="fas fa-edit"></i>

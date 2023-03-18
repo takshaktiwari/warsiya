@@ -13,11 +13,18 @@
 
                     <div class="row my-5">
                         @foreach ($grade->subjects as $subject)
-                            <div class="col-xxl-4 col-xl-4 col-lg-4">
+                            <div class="col-xl-4 col-md-6">
                                 <div class="card my-2">
                                     <div class="card-body">
                                         <h5 class="section__title">
-                                            <a href="{{ route('subject', [$grade, $subject]) }}"> {{ $subject->name }} </a>
+                                            <a href="{{ route('subject', [$grade, $subject]) }}">
+                                                {{ $subject->name }}
+                                                @if ($subject->parent)
+                                                    <span class="small d-block fw-normal">
+                                                        {{ $subject->parent->name }}
+                                                    </span>
+                                                @endif
+                                            </a>
                                         </h5>
                                     </div>
                                 </div>

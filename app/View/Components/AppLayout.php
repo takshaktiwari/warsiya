@@ -12,7 +12,7 @@ class AppLayout extends Component
 
     public function __construct($value='')
     {
-        $this->boards = Board::limit(5)->get();
+        $this->boards = Board::get();
     }
 
     public function render(): View

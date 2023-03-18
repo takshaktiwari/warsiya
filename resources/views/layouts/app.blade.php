@@ -236,7 +236,7 @@
                                 <h3 class="footer__widget-title">Courses</h3>
                                 <div class="footer__widget-content">
                                     <ul>
-                                        @foreach ($boards as $board)
+                                        @foreach ($boards->take(5) as $board)
                                             <li>
                                                 <a href="{{ route('board', [$board]) }}">
                                                     {{ $board->short_name }}

@@ -45,7 +45,14 @@ class HomeController extends Controller
 
     public function grade(Grade $grade)
     {
-        $grades = Grade::where('board_id', $grade->board_id)->get();
+        $grades = Grade::query()
+            ->where('board_id', $grade->board_id)
+            ->with(['subjects' => function ($query) {
+                $query->with('parent:id,name');
+                $query->whereNotNull('subjects.subject_id');
+                $query->orDoesntHave('children');
+            }])
+            ->get();
         return view('grade')->with([
             'grade' => $grade,
             'grades' => $grades,

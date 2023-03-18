@@ -28,8 +28,22 @@
                     <h5 class="my-auto">Create Subject</h5>
                 </div>
                 <div class="card-body">
-                    <input type="text" name="name" class="form-control" placeholder="Subject Name"
-                        value="{{ old('name') }}" required>
+                    <div class="form-group">
+                        <label for="">Parent Subject</label>
+                        <select name="subject_id" id="subject_id" class="form-control">
+                            <option value="">-- Select --</option>
+                            @foreach ($subjects as $subject)
+                                <option value="{{ $subject->id }}">
+                                    {{ $subject->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Name*</label>
+                        <input type="text" name="name" class="form-control" placeholder="Subject Name"
+                            value="{{ old('name') }}" required>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-dark">

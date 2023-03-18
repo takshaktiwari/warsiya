@@ -1334,8 +1334,8 @@
                 </div>
             </div>
             <div class="tp-team__wrapper mb-30">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                <div class="row justify-content-center">
+                    {{-- <div class="col-lg-3 col-md-6">
                         <div class="tp-team__member fix mb-30">
                             <div class="tp-team__img w-img tp-team__overlay p-relative">
                                 <a href="instructor-details.html">
@@ -1370,7 +1370,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-lg-3 col-md-6">
                         <div class="tp-team__member fix mb-30">
                             <div class="tp-team__img w-img tp-team__overlay p-relative">

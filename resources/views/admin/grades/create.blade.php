@@ -36,7 +36,7 @@
 
                     <div class="form-group">
                         <label for="">Select Board*</label>
-                        <select name="board_id" class="form-control"  required>
+                        <select name="board_id" class="form-control" required>
                             <option value="">-- Select --</option>
                             @foreach ($boards as $board)
                                 <option value="{{ $board->id }}">{{ $board->short_name }}</option>
@@ -49,7 +49,12 @@
                         <select name="subjects[]" id="subjects" class="form-control select2" multiple required>
                             <option value="">-- Select --</option>
                             @foreach ($subjects as $subject)
-                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                <option value="{{ $subject->id }}">
+                                    {{ $subject->name }}
+                                    @if ($subject->parent)
+                                        -> {{ $subject->parent?->name }}
+                                    @endif
+                                </option>
                             @endforeach
                         </select>
                     </div>

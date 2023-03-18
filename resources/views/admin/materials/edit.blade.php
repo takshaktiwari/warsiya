@@ -20,7 +20,7 @@
 
     <div class="row">
         <div class="col-md-8">
-            
+
             <form method="POST" action="{{ route('admin.materials.update', [$material]) }}" class="card" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -38,7 +38,9 @@
                         <select name="" id="board" class="form-control">
                             <option value="">-- Select --</option>
                             @foreach ($boards as $board)
-                                <option value="{{ $board->id }}">{{ $board->short_name }}</option>
+                                <option value="{{ $board->id }}" {{ ($board->id == $material->grade?->board->id) ? 'selected' : '' }}>
+                                    {{ $board->short_name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -47,6 +49,11 @@
                         <label for="">Grade*</label>
                         <select name="grade_id" id="grade" class="form-control">
                             <option value="">-- Select --</option>
+                            @foreach ($grades as $grade)
+                                <option value="{{ $grade->id }}" {{ ($grade->id == $material->grade?->id) ? 'selected' : '' }}>
+                                    {{ $grade->name }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -54,15 +61,23 @@
                         <label for="">Select Subjects*</label>
                         <select name="subject_id" id="subject" class="form-control" required>
                             <option value="">-- Select --</option>
+                            @foreach ($grade->subjects as $subject)
+                                <option value="{{ $subject->id }}" {{ ($subject->id == $material->subject_id) ? 'selected' : '' }}>
+                                    {{ $subject->name }}
+                                    @if($subject->parent)
+                                     -> {{ $subject->parent->name }}
+                                    @endif
+                                </option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="">Upload PDF</label>
-                        <input type='file' name="file_path[]" multiple class="form-control" required>
+                        <input type='file' name="file_path[]" multiple class="form-control">
                     </div>
                     <div class="">
-                    
+
                     <div class="form-group">
                         <label for="">Description*</label>
                         <textarea name="description" cols="40" rows="4" class="form-control"

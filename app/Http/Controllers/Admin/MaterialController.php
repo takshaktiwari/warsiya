@@ -55,7 +55,12 @@ class MaterialController extends Controller
             'grade_id'  =>  'required|numeric'
         ]);
         return Subject::query()
+            ->with('parent:id,name')
             ->whereHas('grades', fn ($q) => $q->where('grades.id', $request->grade_id))
+            ->where(function ($query) {
+                $query->whereNotNull('subject_id');
+                $query->orDoesntHave('children');
+            })
             ->get();
     }
 
@@ -95,7 +100,6 @@ class MaterialController extends Controller
     public function show(Material $material)
     {
         $grade = Grade::where('id', $material->grade_id)->get();
-        //$board = Board::where('id')->get();
         return view('admin.materials.info')->with([
             'material'     =>  $material,
             'grade'    =>  $grade
@@ -104,32 +108,49 @@ class MaterialController extends Controller
 
     public function edit(Material $material)
     {
-        $subjects = Subject::get()->all();
-        $boards = Board::get()->all();
+        $boards = Board::get();
+        $grades = Grade::query()
+            ->with(['subjects' => fn ($q) => $q->with('parent:id,name')])
+            ->where('board_id', $material->grade?->board?->id)
+            ->get();
 
         return view('admin.materials.edit')->with([
             'material'     =>  $material,
-            'subjects'     =>  $subjects,
-            'boards'    =>  $boards
+            'boards'    =>  $boards,
+            'grades'    =>  $grades,
         ]);
     }
 
     public function update(Request $request, Material $material)
     {
         $request->validate([
-
             'title'         =>  'required',
-            'subjects'      =>  'required',
-            'file_path'     =>  'required',
+            'subject_id'      =>  'required',
+            'file_path'     =>  'nullable|array',
+            'file_path.*'     =>  'nullable|file',
             'description'   =>  'required'
         ]);
 
         $material->update([
             'title'        =>  $request->post('title'),
-            'subject_id'   =>  $request->post('subjects'),
-            'file_path'    =>  'test path',
+            'subject_id'   =>  $request->post('subject_id'),
             'description'  =>  $request->post('description')
         ]);
+
+        if ($request->file('file_path')) {
+            foreach ($request->file('file_path') as $file) {
+                $fileName = str()->of(microtime())->slug('-')->append('.' . $file->extension());
+                $path = $file->storeAs(
+                    'materials',
+                    $fileName,
+                    'public'
+                );
+                MaterialItem::create([
+                    'material_id'  => $material->id,
+                    'file_path' =>  $path
+                ]);
+            }
+        }
 
         return back()->withSuccess('Material has been updated.');
     }
